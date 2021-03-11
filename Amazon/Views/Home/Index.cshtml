@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model BookListViewModel
+
+<br />
+<div>
+    <h1 class="text-center" style="text-decoration: underline;">Available Books</h1>
+</div>
+
+<!--Used a container class to center the books in the page-->
+<div class="container float-left">
+    <div class="text-center">
+        @foreach (var x in Model.Books)
+        {
+            <partial name="BookSummary" model="x" />
+        }
+    </div>
+</div>
+
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+<!--center the page navigation bar-->
+<div class="text-center">
+    <!--align button to bottom of its column grid-->
+    <div class="col-3 btn-group pull-right m-1 row align-items-end"
+         page-model="@Model.PagingInfo"
+         page-action="Index"
+         page-classes-enabled="true"
+         page-class="btn"
+         page-class-normal="btn-outline-dark"
+         page-class-selected="btn-dark"
+         page-url-category="@Model.CurrentCategory">
+    </div>
+</div>

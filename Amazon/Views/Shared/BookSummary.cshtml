@@ -1,0 +1,32 @@
+﻿@model Book
+
+            <!--Float left allows them to stack side by side into a total of 3 columns-->
+<div class="col-4 float-left text-center" style="border:groove; position: center; background-color:antiquewhite">
+    <h5>@Model.Title</h5>
+    <div>
+        <!-- displays price in a badge pill-->
+        <span class="badge badge-pill badge-light m-1 p-2" style="float:right">
+            Only $@Model.Price
+        </span>
+    </div>
+    <p>Book ID: @Model.BookID</p>
+    <p>Author: @Model.Author</p>
+    <p>Publisher: @Model.Publisher</p>
+    <p>ISBN: @Model.ISBN</p>
+    <p>Category: @Model.ClassificationCategory</p>
+    <p>Page Length: @Model.PageLength</p>
+
+    <!-- displays "Add to Cart" option in a badge pill-->
+    <form id="@Model.BookID" asp-page="/Purchase" method="post">
+        <input type="hidden" asp-for="BookID" />
+        <input type="hidden" name="ReturnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+        <span class="card-text p-1">
+            @Model.BookID
+            <button type="submit" class="btn-success btn-sm pull-right" style="float:right">
+                Add to Cart
+            </button>
+        </span>
+
+
+    </form>
+</div>
